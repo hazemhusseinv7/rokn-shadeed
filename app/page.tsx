@@ -1,9 +1,9 @@
-import Search from "@/components/Search";
+import Hero from "@/components/Hero";
 
 export default function Home() {
   return (
     <main>
-      <Search />
+      <Hero />
     </main>
   );
 }
