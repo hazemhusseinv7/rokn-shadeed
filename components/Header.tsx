@@ -27,6 +27,7 @@ const Header = () => {
           {/* Desktop Navigation */}
           <NavBody>
             <NavbarLogo />
+
             <LimelightNav />
             {/* <NavItems items={navItems} /> */}
             {/* <div className="flex items-center gap-4">

@@ -3,7 +3,13 @@ import BotDetection from "@/components/forgeui/bot-detection";
 import LightRays from "@/components/LightRays";
 import { TextEffect } from "@/components/motion-primitives/text-effect";
 
-const Hero = () => {
+import { getHeroData } from "@/lib/sanity/queries";
+
+const Hero = async ({ params }: { params: Promise<{ locale: string }> }) => {
+  const { locale } = await params;
+
+  const data: HeroType | null = await getHeroData(locale);
+
   return (
     <section id="hero">
       <div className="relative min-h-screen">
@@ -22,15 +28,21 @@ const Hero = () => {
         </div>
         <BotDetection className="relative top-14 z-10 mx-auto rotate-180" />
 
-        <TextEffect
-          per="word"
-          as="h1"
-          preset="blur"
-          className="mt-14 text-center text-2xl md:mt-32"
-        >
-          Lorem ipsum dolor sit.
-        </TextEffect>
-        <Search className="relative top-10 z-10" />
+        {data?.title && (
+          <TextEffect
+            per="word"
+            as="h1"
+            preset="blur"
+            className="mt-14 text-center text-2xl md:mt-32"
+          >
+            {data.title}
+          </TextEffect>
+        )}
+
+        <Search
+          searchInputs={data?.searchInputs}
+          className="relative top-10 z-10"
+        />
       </div>
     </section>
   );

@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState, useRef, useLayoutEffect, cloneElement } from "react";
+import Link from "next/link";
+import ChangeLang from "@/components/ChangeLang";
 import { cn } from "@/lib/utils";
 import { PiMagnifyingGlassBold } from "react-icons/pi";
 import { MdOutlineMarkChatRead } from "react-icons/md";
@@ -88,7 +90,8 @@ export const LimelightNav = ({
       )}
     >
       {items.map(({ id, icon, label, onClick }, index) => (
-        <a
+        <Link
+          href="#"
           key={id}
           ref={(el) => {
             navItemRefs.current[index] = el;
@@ -108,9 +111,9 @@ export const LimelightNav = ({
               iconClassName || "",
             ),
           })}
-        </a>
+        </Link>
       ))}
-
+      <ChangeLang />
       <div
         ref={limelightRef}
         className={cn(

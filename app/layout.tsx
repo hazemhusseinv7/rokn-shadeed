@@ -1,30 +1,11 @@
-import type { Metadata } from "next";
-import { Alexandria } from "next/font/google";
-import "./globals.css";
-import { cn } from "@/lib/utils";
-import Header from "@/components/Header";
+import { ReactNode } from "react";
 
-const alexandria = Alexandria({
-  variable: "--font-alexandria",
-  subsets: ["latin", "arabic"],
-});
-
-export const metadata: Metadata = {
-  title: "Rokn Shadeed",
-  description: "Rokn Shadeed",
+type Props = {
+  children: ReactNode;
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-    <html lang="en" className="dark scroll-smooth">
-      <body className={cn(alexandria.variable, "font-alexandria antialiased")}>
-        <Header />
-        {children}
-      </body>
-    </html>
-  );
+// Since we have a `not-found.tsx` page on the root, a layout file
+// is required, even if it's just passing children through.
+export default function RootLayout({ children }: Props) {
+  return children;
 }

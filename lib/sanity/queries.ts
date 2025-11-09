@@ -15,7 +15,7 @@ export async function getHeroData(
       query,
       { lang },
       {
-        next: { revalidate: 3600, tags: ["hero", "content"] },
+        next: { revalidate: 0, tags: ["hero", "content"] },
       },
     );
   } catch (error) {

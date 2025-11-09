@@ -1,5 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@plugin "../../hero.ts";
+@source "../../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -130,4 +132,29 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Text Selection */
+::-moz-selection {
+  @apply text-primary-1 bg-zinc-900;
+}
+
+::selection {
+  @apply text-primary-1 bg-zinc-900;
+}
+
+/* Scrollbar */
+/* width */
+::-webkit-scrollbar {
+  @apply w-[10px];
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  @apply bg-zinc-900;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  @apply hover:from-primary-1 hover:to-primary-1 rounded-full bg-linear-to-br from-zinc-500 to-zinc-700;
 }

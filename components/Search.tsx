@@ -3,7 +3,13 @@
 import { PlaceholdersAndVanishInput } from "@/components/ui/placeholders-and-vanish-input";
 import { cn } from "@/lib/utils";
 
-const Search = ({ className }: { className?: string }) => {
+const Search = ({
+  searchInputs=[],
+  className,
+}: {
+  searchInputs?: { label: string }[];
+  className?: string;
+}) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log(e.target.value);
   };
@@ -12,7 +18,7 @@ const Search = ({ className }: { className?: string }) => {
     console.log("submitted");
   };
 
-  const placeholders = [""];
+  const placeholderStrings = searchInputs.map((p) => p.label);
 
   return (
     <div
@@ -22,7 +28,7 @@ const Search = ({ className }: { className?: string }) => {
       )}
     >
       <PlaceholdersAndVanishInput
-        placeholders={placeholders}
+        placeholders={placeholderStrings}
         onChange={handleChange}
         onSubmit={onSubmit}
       />
