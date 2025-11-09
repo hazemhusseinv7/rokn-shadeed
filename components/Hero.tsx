@@ -1,6 +1,7 @@
 import Search from "@/components/Search";
 import BotDetection from "@/components/forgeui/bot-detection";
-import LightRays from "./LightRays";
+import LightRays from "@/components/LightRays";
+import { TextEffect } from "@/components/motion-primitives/text-effect";
 
 const Hero = () => {
   return (
@@ -20,6 +21,15 @@ const Hero = () => {
           />
         </div>
         <BotDetection className="relative top-14 z-10 mx-auto rotate-180" />
+
+        <TextEffect
+          per="word"
+          as="h1"
+          preset="blur"
+          className="mt-14 text-center text-2xl md:mt-32"
+        >
+          Lorem ipsum dolor sit.
+        </TextEffect>
         <Search className="relative top-10 z-10" />
       </div>
     </section>

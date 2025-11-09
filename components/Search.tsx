@@ -21,7 +21,6 @@ const Search = ({ className }: { className?: string }) => {
         "flex flex-col items-center justify-center px-4",
       )}
     >
-      <p className="mb-10 text-center text-xl text-black sm:mb-20 sm:text-5xl dark:text-white"></p>
       <PlaceholdersAndVanishInput
         placeholders={placeholders}
         onChange={handleChange}
