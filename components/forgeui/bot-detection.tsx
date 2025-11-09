@@ -47,7 +47,7 @@ const BotDetection = ({
     <div
       className={cn(
         className,
-        "relative overflow-hidden",
+        // "relative overflow-hidden",
         "h-120 w-full max-w-[350px]",
         // "rounded-md border border-neutral-800 bg-black",
       )}

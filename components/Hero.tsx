@@ -6,7 +6,7 @@ const Hero = () => {
   return (
     <section id="hero">
       <div className="relative min-h-screen">
-        <div className="absolute w-full">
+        <div className="absolute size-full">
           <LightRays
             raysOrigin="top-center"
             raysSpeed={1.5}
@@ -19,8 +19,8 @@ const Hero = () => {
             className="custom-rays"
           />
         </div>
-        <BotDetection className="z-10 mx-auto rotate-180" />
-        <Search className="z-10" />
+        <BotDetection className="relative top-14 z-10 mx-auto rotate-180" />
+        <Search className="relative top-10 z-10" />
       </div>
     </section>
   );
