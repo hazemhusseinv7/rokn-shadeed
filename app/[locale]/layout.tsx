@@ -7,7 +7,7 @@ import { Locale, hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import Header from "@/components/Header";
-import { Providers } from "@/providers";
+import { Providers } from "@/app/[locale]/providers";
 
 const alexandria = Alexandria({
   variable: "--font-alexandria",
@@ -50,10 +50,21 @@ export default async function RootLayout({
   const direction = locale === "ar" ? "rtl" : "ltr";
 
   return (
-    <html lang={locale} dir={direction} className="dark scroll-smooth">
+    <html
+      lang={locale}
+      dir={direction}
+      className="dark scroll-smooth"
+      suppressHydrationWarning
+    >
       <body className={cn(alexandria.variable, "font-alexandria antialiased")}>
         <NextIntlClientProvider>
-          <Providers>
+          <Providers
+            themeProps={{
+              attribute: "class",
+              defaultTheme: "system",
+              enableSystem: true,
+            }}
+          >
             <Header />
             {children}
           </Providers>

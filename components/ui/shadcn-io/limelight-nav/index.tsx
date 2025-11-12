@@ -3,6 +3,7 @@
 import React, { useState, useRef, useLayoutEffect, cloneElement } from "react";
 import Link from "next/link";
 import ChangeLang from "@/components/ChangeLang";
+import ChangeTheme from "@/components/ChangeTheme";
 import { cn } from "@/lib/utils";
 import { PiMagnifyingGlassBold } from "react-icons/pi";
 import { MdOutlineMarkChatRead } from "react-icons/md";
@@ -121,6 +122,7 @@ export const LimelightNav = ({
         </Link>
       ))}
       <ChangeLang />
+      <ChangeTheme />
       <div
         ref={limelightRef}
         className={cn(
