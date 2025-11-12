@@ -5,6 +5,10 @@ declare const messages: {
   "Metadata": {
     "title": "Rokn Shadeed",
     "description": "Rokn Shadeed"
+  },
+
+  "Blog": {
+    "close": "Close"
   }
 };
 export default messages;

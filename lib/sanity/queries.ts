@@ -1,10 +1,15 @@
 import { sanityClient } from "@/lib/sanity/client";
 
+const REVALIDATE_TIME =
+  process.env.NODE_ENV === "production"
+    ? Number(process.env.REVALIDATE_TIME) || 3600
+    : 0;
+
 export async function getHeroData(
   lang: string = "en",
 ): Promise<HeroType | null> {
   const query = `*[_type == "main"][0] {
-    "title": title[_key == $lang][0].value,
+    "title": title[][_key == $lang][0].value,
     searchInputs[] {
       "label": label[_key == $lang][0].value
     }
@@ -15,11 +20,91 @@ export async function getHeroData(
       query,
       { lang },
       {
-        next: { revalidate: 0, tags: ["hero", "content"] },
+        next: { revalidate: REVALIDATE_TIME, tags: ["hero", "content"] },
       },
     );
   } catch (error) {
     console.error("Error fetching hero data:", error);
+    return null;
+  }
+}
+
+export async function getBlogPosts(
+  lang: string = "en",
+): Promise<BlogPost[] | null> {
+  const query = `*[_type == "blog"] | order(publishedAt desc) {
+    _id,
+    "title": title[][_key == $lang][0].value,
+    slug,
+    mainImage,
+    publishedAt,
+    "author": author->{
+      "name": name[][_key == $lang][0].value,
+      image, 
+      bio
+    },
+    "categories": categories[]->{
+      "title": title[][_key == $lang][0].value,
+      description
+    },
+    "body": select(
+      $lang == "en" => bodyEn,
+      $lang == "ar" => bodyAr
+    )
+  }`;
+
+  try {
+    return await sanityClient.fetch(
+      query,
+      { lang },
+      {
+        next: { revalidate: REVALIDATE_TIME, tags: ["blog", "content"] },
+      },
+    );
+  } catch (error) {
+    console.error("Error fetching blog posts:", error);
+    return [];
+  }
+}
+
+export async function getBlogPost(
+  slug: string,
+  lang: string = "en",
+): Promise<BlogPost | null> {
+  const query = `*[_type == "blog" && slug.current == $slug][0] {
+    _id,
+    "title": title[][_key == $lang][0].value,
+    slug,
+    mainImage,
+    publishedAt,
+    "author": author->{
+      "name": name[][_key == $lang][0].value,
+      image, 
+      bio
+    },
+    "categories": categories[]->{
+      "title": title[][_key == $lang][0].value,
+      description
+    },
+    "body": select(
+      $lang == "en" => bodyEn,
+      $lang == "ar" => bodyAr
+    )
+  }`;
+
+  try {
+    return await sanityClient.fetch(
+      query,
+      { slug, lang },
+      {
+        next: {
+          revalidate: REVALIDATE_TIME,
+          tags: [`blog-post-${slug}`, "content"],
+        },
+      },
+    );
+  } catch (error) {
+    console.error("Error fetching blog post:", error);
     return null;
   }
 }

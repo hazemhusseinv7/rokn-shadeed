@@ -13,15 +13,22 @@ export type NavItem = {
   icon: React.ReactElement;
   label?: string;
   onClick?: () => void;
+  link: string;
 };
 
 const defaultNavItems: NavItem[] = [
-  { id: "search", icon: <PiMagnifyingGlassBold />, label: "Search" },
-  { id: "contact-us", icon: <MdOutlineMarkChatRead />, label: "Contact us" },
+  { id: "search", icon: <PiMagnifyingGlassBold />, label: "Search", link: "#" },
+  {
+    id: "contact-us",
+    icon: <MdOutlineMarkChatRead />,
+    label: "Contact us",
+    link: "#",
+  },
   {
     id: "blog",
     icon: <CgFileDocument />,
     label: "Blog",
+    link: "#",
   },
 ];
 
@@ -89,9 +96,9 @@ export const LimelightNav = ({
         className,
       )}
     >
-      {items.map(({ id, icon, label, onClick }, index) => (
+      {items.map(({ id, icon, label, link, onClick }, index) => (
         <Link
-          href="#"
+          href={link}
           key={id}
           ref={(el) => {
             navItemRefs.current[index] = el;
