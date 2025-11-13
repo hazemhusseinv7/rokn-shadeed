@@ -11,7 +11,7 @@ const Hero = async ({ params }: { params: Promise<{ locale: string }> }) => {
   const data: HeroType | null = await getHeroData(locale);
 
   return (
-    <section id="hero" className="overflow-h">
+    <section id="hero" className="overflow-hidden">
       <div className="relative min-h-screen">
         <div className="absolute size-full">
           <LightRays

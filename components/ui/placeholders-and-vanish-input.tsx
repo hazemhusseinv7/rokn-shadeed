@@ -205,12 +205,14 @@ export function PlaceholdersAndVanishInput({
           "relative z-50 size-full rounded-full border-none bg-transparent pr-20 pl-4 text-sm text-black focus:ring-0 focus:outline-none sm:pl-10 sm:text-base dark:text-white",
           animating && "text-transparent dark:text-transparent",
         )}
+        aria-label="Search"
       />
 
       <button
         disabled={!value}
         type="submit"
         className="absolute top-1/2 right-2 z-50 flex size-8 -translate-y-1/2 items-center justify-center rounded-full bg-black transition duration-200 disabled:bg-gray-100 dark:bg-zinc-900 dark:disabled:bg-zinc-800"
+        aria-label="Submit"
       >
         <motion.svg
           xmlns="http://www.w3.org/2000/svg"

@@ -9,6 +9,29 @@ declare const messages: {
 
   "Blog": {
     "close": "Close"
+  },
+
+  "Contact": {
+    "title": "Contact Us",
+
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "message": "Message",
+      "button": "Send"
+    },
+
+    "messages": {
+      "success": {
+        "title": "Message Sent Successfully",
+        "description": "Thank you for contacting us. We will get back to you as soon as possible."
+      },
+      "error": {
+        "title": "Sending Failed",
+        "description": "An error occurred while sending the message. Please try again."
+      }
+    }
   }
 };
 export default messages;

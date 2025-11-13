@@ -16,7 +16,7 @@ const Header = () => {
       id: "contact-us",
       icon: <MdOutlineMarkChatRead />,
       label: "Contact us",
-      link: "#",
+      link: "/contact",
     },
     {
       id: "blog",
