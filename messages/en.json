@@ -29,5 +29,17 @@
         "description": "An error occurred while sending the message. Please try again."
       }
     }
+  },
+
+  "Footer": {
+    "button": "Report a Product",
+    "title": {
+      "item-1": "This guide is powered by a global community",
+      "item-2": "Share your knowledge and make a difference"
+    },
+    "description": {
+      "item-1": "Help us keep the list accurate and up-to-date",
+      "item-2": "Together, our choices make an impact"
+    }
   }
 }

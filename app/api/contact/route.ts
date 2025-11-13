@@ -73,7 +73,7 @@ export async function POST(request: NextRequest) {
       try {
         const submissionData = {
           _type: "formSubmissions",
-          fullname: name.trim(),
+          name: name.trim(),
           email: email?.trim() || "",
           phone: phone.trim(),
           message: message?.trim() || "",

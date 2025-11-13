@@ -7,6 +7,7 @@ import { Locale, hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import { Providers } from "@/app/[locale]/providers";
 
 const alexandria = Alexandria({
@@ -67,6 +68,7 @@ export default async function RootLayout({
           >
             <Header />
             {children}
+            <Footer />
           </Providers>
         </NextIntlClientProvider>
       </body>

@@ -10,7 +10,7 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
   setRequestLocale(locale as Locale);
 
   return (
-    <main className="min-h-[200vh]">
+    <main>
       <Hero params={params} />
     </main>
   );
