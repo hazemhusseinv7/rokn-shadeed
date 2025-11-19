@@ -41,5 +41,27 @@
       "item-1": "Help us keep the list accurate and up-to-date",
       "item-2": "Together, our choices make an impact"
     }
+  },
+
+  "Search": {
+    "title": "Company Information",
+    "description": {
+      "item-1": "Description",
+      "item-2": "This brand is owned by:"
+    },
+    "proof": "Proof",
+    "indicator": {
+      "type-1": "Financial",
+      "type-2": "Moral",
+      "type-3": "Indirect",
+      "type-4": "Safe"
+    },
+
+    "messages": {
+      "type-to-search": "Type at least 2 characters to search",
+      "no-results": "No results found",
+      "searching": "Searching...",
+      "search-unavailable": "Search unavailable"
+    }
   }
 }

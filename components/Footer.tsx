@@ -18,13 +18,13 @@ const Footer = async () => {
             {t("button")}
           </Link>
 
-          <p className="from-primary-3 to-primary-2 bg-linear-to-b bg-clip-text text-2xl leading-normal font-semibold tracking-tighter text-transparent md:text-4xl dark:from-[#edeffd] dark:to-[#7b9cda]">
+          <p className="from-primary-3 to-primary-2 dark:from-primary-1 dark:to-primary-1/70 bg-linear-to-b bg-clip-text text-xl leading-normal font-semibold tracking-tighter text-transparent md:text-4xl">
             {t("title.item-1")}
             <br />
-            {t("description.item-1")}
+            {t("title.item-2")}
           </p>
 
-          <p className="from-primary-2 to-primary-2 bg-linear-to-b bg-clip-text text-xl leading-normal font-light tracking-tighter text-transparent dark:from-[#86a7e4] dark:to-[#7b9cda]">
+          <p className="from-primary-2 to-primary-2 dark:from-primary-1 dark:to-primary-1/80 bg-linear-to-b bg-clip-text text-sm leading-normal font-light tracking-tighter text-transparent lg:text-lg">
             {t("description.item-1")}
             <br />
             {t("description.item-2")}

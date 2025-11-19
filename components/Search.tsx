@@ -4,7 +4,7 @@ import { PlaceholdersAndVanishInput } from "@/components/ui/placeholders-and-van
 import { cn } from "@/lib/utils";
 
 const Search = ({
-  searchInputs=[],
+  searchInputs = [],
   className,
 }: {
   searchInputs?: { label: string }[];

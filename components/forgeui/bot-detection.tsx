@@ -121,18 +121,11 @@ const BotDetection = ({
             className="absolute bottom-2 left-1/2 flex h-28 w-28 -translate-x-1/2 rotate-180 items-center justify-center rounded-full border border-neutral-800 bg-zinc-800 shadow-2xl shadow-zinc-500 dark:bg-zinc-900"
           >
             <Image
-              src="/logo/logo-alt-2.svg"
+              src="/logo/icon-alt.png"
               width={70}
               height={70}
               alt="Logo"
-              className="size-17.5 dark:hidden"
-            />
-            <Image
-              src="/logo/logo-alt-3.svg"
-              width={70}
-              height={70}
-              alt="Logo"
-              className="hidden size-17.5 dark:block"
+              className="size-17.5"
             />
           </Link>
         </div>

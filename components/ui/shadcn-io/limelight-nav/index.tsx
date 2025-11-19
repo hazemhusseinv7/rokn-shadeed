@@ -2,6 +2,8 @@
 
 import React, { useState, useRef, useLayoutEffect, cloneElement } from "react";
 import Link from "next/link";
+import { usePathname } from "@/i18n/navigation";
+
 import ChangeLang from "@/components/ChangeLang";
 import ChangeTheme from "@/components/ChangeTheme";
 import { cn } from "@/lib/utils";
@@ -35,7 +37,7 @@ const defaultNavItems: NavItem[] = [
 
 export type LimelightNavProps = {
   items?: NavItem[];
-  defaultActiveIndex?: number;
+  // defaultActiveIndex?: number;
   onTabChange?: (index: number) => void;
   className?: string;
   limelightClassName?: string;
@@ -48,20 +50,40 @@ export type LimelightNavProps = {
  */
 export const LimelightNav = ({
   items = defaultNavItems,
-  defaultActiveIndex = 0,
+  // defaultActiveIndex = 0,
   onTabChange,
   className,
   limelightClassName,
   iconContainerClassName,
   iconClassName,
 }: LimelightNavProps) => {
-  const [activeIndex, setActiveIndex] = useState(defaultActiveIndex);
+  // const [activeIndex, setActiveIndex] = useState(defaultActiveIndex);
+  const pathname = usePathname();
+
   const [isReady, setIsReady] = useState(false);
   const navItemRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const limelightRef = useRef<HTMLDivElement | null>(null);
 
+  const getActiveIndex = () => {
+    for (let i = 0; i < items.length; i++) {
+      const item = items[i];
+
+      if (item.link === "/" && pathname === "/") {
+        return i;
+      }
+
+      if (item.link !== "/" && pathname.startsWith(item.link)) {
+        return i;
+      }
+    }
+
+    return -1;
+  };
+
+  const activeIndex = getActiveIndex();
+
   useLayoutEffect(() => {
-    if (items.length === 0) return;
+    if (items.length === 0 || activeIndex === -1) return;
 
     const limelight = limelightRef.current;
     const activeItem = navItemRefs.current[activeIndex];
@@ -84,7 +106,7 @@ export const LimelightNav = ({
   }
 
   const handleItemClick = (index: number, itemOnClick?: () => void) => {
-    setActiveIndex(index);
+    // setActiveIndex(index);
     onTabChange?.(index);
     itemOnClick?.();
   };
@@ -123,17 +145,19 @@ export const LimelightNav = ({
       ))}
       <ChangeLang />
       <ChangeTheme />
-      <div
-        ref={limelightRef}
-        className={cn(
-          "bg-primary absolute top-0 z-10 h-[5px] w-11 rounded-full shadow-[0_50px_15px_var(--primary)]",
-          isReady ? "transition-[left] duration-400 ease-in-out" : "",
-          limelightClassName,
-        )}
-        style={{ left: "-999px" }}
-      >
-        <div className="from-primary/30 pointer-events-none absolute top-[5px] left-[-30%] h-14 w-[160%] bg-linear-to-b to-transparent [clip-path:polygon(5%_100%,25%_0,75%_0,95%_100%)]" />
-      </div>
+      {activeIndex !== -1 && (
+        <div
+          ref={limelightRef}
+          className={cn(
+            "bg-primary absolute top-0 z-10 h-[5px] w-11 rounded-full shadow-[0_50px_15px_var(--primary)]",
+            isReady ? "transition-[left] duration-400 ease-in-out" : "",
+            limelightClassName,
+          )}
+          style={{ left: "-999px" }}
+        >
+          <div className="from-primary/30 pointer-events-none absolute top-[5px] left-[-30%] h-14 w-[160%] bg-linear-to-b to-transparent [clip-path:polygon(5%_100%,25%_0,75%_0,95%_100%)]" />
+        </div>
+      )}
     </nav>
   );
 };

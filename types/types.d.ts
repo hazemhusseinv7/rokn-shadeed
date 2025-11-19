@@ -33,3 +33,50 @@ interface BlogPost {
   author?: AuthorType;
   categories?: CategoryType[];
 }
+
+interface Company {
+  logo: string;
+  name: {
+    en: string;
+    ar: string;
+  };
+  description: {
+    en: string;
+    ar: string;
+  };
+  proof: string;
+  category: string;
+  tier: string;
+}
+
+interface SubCompany {
+  logo: string;
+  brand: string;
+  company: string;
+  proof: string;
+  category: string;
+  tier: string;
+}
+
+interface Category {
+  en: string;
+  ar: string;
+}
+
+interface Tier {
+  en: string;
+  ar: string;
+  background: string;
+  textColor: string;
+}
+
+interface ApiResponse {
+  success: boolean;
+  data: {
+    companies?: Company[];
+    subCompanies?: SubCompany[];
+    categories?: Category[];
+    tiers?: Tier[];
+  };
+  error?: string;
+}
