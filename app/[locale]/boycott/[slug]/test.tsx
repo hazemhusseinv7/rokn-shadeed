@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getLocale, getTranslations } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
+import { getLocale } from "next-intl/server";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -48,7 +49,7 @@ export default async function Page({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const locale = await getLocale();
+  const locale = await getLocale(); // Get the current locale
 
   const result = await getBoycottCompany(slug);
 
@@ -62,6 +63,7 @@ export default async function Page({
   }: { type: "company" | "sub-company"; data: Company | SubCompany } = result;
   const t = await getTranslations("Search");
 
+  // Helper functions to get localized content
   const getName = () => {
     if (type === "company") {
       const company = boycottCompany as Company;
@@ -152,12 +154,11 @@ export default async function Page({
             {t("description.item-1")}
           </h2>
           <div className="rounded-lg bg-zinc-200 p-6 dark:bg-zinc-800">
-            {type === "company" &&
-              (boycottCompany as Company).description?.en && (
-                <p className="leading-relaxed text-zinc-700 dark:text-zinc-300">
-                  {getDescription()}
-                </p>
-              )}
+            {type === "company" && getDescription() && (
+              <p className="leading-relaxed text-zinc-700 dark:text-zinc-300">
+                {getDescription()}
+              </p>
+            )}
 
             {type === "sub-company" && (
               <p className="text-zinc-700 dark:text-zinc-300">

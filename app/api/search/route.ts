@@ -80,10 +80,14 @@ export async function GET(request: NextRequest) {
           return {
             id: `company-${index}`,
             type: "company" as const,
-            name:
-              locale === "ar"
-                ? item.name.ar || item.name.en
-                : item.name.en || item.name.ar,
+            name: {
+              en: item.name.en || "",
+              ar: item.name.ar || "",
+              display:
+                locale === "ar"
+                  ? item.name.ar || item.name.en
+                  : item.name.en || item.name.ar,
+            },
             description:
               locale === "ar"
                 ? item.description.ar || item.description.en
@@ -95,14 +99,18 @@ export async function GET(request: NextRequest) {
           return {
             id: `subcompany-${index}`,
             type: "sub-company" as const,
-            name: item.brand || "",
+            name: {
+              en: item.brand || "",
+              ar: item.brand || "",
+              display: item.brand || "",
+            },
             company: item.company || "",
             tier: item.tier || "",
             logo: item.logo || "",
           };
         }
       })
-      .filter((item) => item.name);
+      .filter((item) => item.name.display);
 
     return NextResponse.json({
       success: true,

@@ -13,7 +13,11 @@ import { PlaceholdersAndVanishInput } from "../ui/placeholders-and-vanish-input"
 interface SearchResultItem {
   id: string;
   type: "company" | "sub-company";
-  name: string;
+  name: {
+    en: string;
+    ar: string;
+    display: string;
+  };
   brand?: string;
   description?: string;
   company?: string;
@@ -188,7 +192,7 @@ function ActionSearchBar({
   }, []);
 
   const getResultUrl = (result: SearchResultItem) => {
-    return `/boycott/${result.name
+    return `/boycott/${result.name.en
       ?.toLowerCase()
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/(^-|-$)+/g, "")}`;
@@ -372,7 +376,7 @@ function ActionSearchBar({
                             />
                           )}
                           <span className="text-sm font-medium text-gray-900 dark:text-gray-100">
-                            {result.name}
+                            {result.name.display}
                           </span>
                         </div>
                         <div
