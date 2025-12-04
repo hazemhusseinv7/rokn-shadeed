@@ -5,6 +5,38 @@ const REVALIDATE_TIME =
     ? Number(process.env.REVALIDATE_TIME) || 3600
     : 0;
 
+export async function getSettingsData(): Promise<SettingsType | null> {
+  const query = `*[_type == "settings"][0]{
+    email,
+    phone, 
+    twitter,
+    linkedin,
+    tiktok,
+    telegram,
+    snapchat,
+    whatsapp,
+    facebook,
+    youtube,
+    instagram
+  }`;
+
+  try {
+    return await sanityClient.fetch(
+      query,
+      {},
+      {
+        next: {
+          revalidate: REVALIDATE_TIME,
+          tags: ["settings"],
+        },
+      },
+    );
+  } catch (error) {
+    console.error("Error fetching settings data:", error);
+    return null;
+  }
+}
+
 export async function getHeroData(
   lang: string = "en",
 ): Promise<HeroType | null> {
@@ -105,6 +137,36 @@ export async function getBlogPost(
     );
   } catch (error) {
     console.error("Error fetching blog post:", error);
+    return null;
+  }
+}
+
+export async function getFooterData(
+  lang: string = "en",
+): Promise<FooterType | null> {
+  const query = `*[_type == "footer"][0] {
+    "globeButton": globeButton[][_key == $lang][0].value,
+    globeButtonLink,
+    "globeTitleLine1": globeTitleLine1[][_key == $lang][0].value,
+    "globeTitleLine2": globeTitleLine2[][_key == $lang][0].value,
+    "globeDescriptionLine1": globeDescriptionLine1[][_key == $lang][0].value,
+    "globeDescriptionLine2": globeDescriptionLine2[][_key == $lang][0].value,
+    "cardDescription": cardDescription[][_key == $lang][0].value
+  }`;
+
+  try {
+    return await sanityClient.fetch(
+      query,
+      { lang },
+      {
+        next: {
+          revalidate: REVALIDATE_TIME,
+          tags: ["footer", "content"],
+        },
+      },
+    );
+  } catch (error) {
+    console.error("Error fetching footer data:", error);
     return null;
   }
 }

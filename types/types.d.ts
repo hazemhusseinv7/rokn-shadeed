@@ -6,6 +6,21 @@ interface ImageType {
   };
   alt?: string;
 }
+
+interface SettingsType {
+  phone?: string;
+  email?: string;
+  twitter?: string;
+  linkedin?: string;
+  tiktok?: string;
+  telegram?: string;
+  snapchat?: string;
+  instagram?: string;
+  whatsapp?: string;
+  facebook?: string;
+  youtube?: string;
+}
+
 interface HeroType {
   title: string;
   searchInputs?: { label: string }[];
@@ -68,6 +83,16 @@ interface Tier {
   ar: string;
   background: string;
   textColor: string;
+}
+
+interface FooterType {
+  globeButton: string;
+  globeButtonLink: string;
+  globeTitleLine1: string;
+  globeTitleLine2: string;
+  globeDescriptionLine1: string;
+  globeDescriptionLine2: string;
+  cardDescription: string;
 }
 
 interface ApiResponse {

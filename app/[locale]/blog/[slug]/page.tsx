@@ -6,6 +6,7 @@ import { urlFor } from "@/lib/sanity/image";
 
 import Author from "../Author";
 import Category from "../Category";
+import { getLocale } from "next-intl/server";
 
 const portableTextComponents = {
   types: {
@@ -32,13 +33,21 @@ const portableTextComponents = {
 
 // Generate static params for SSG
 export async function generateStaticParams() {
-  const posts = await getBlogPosts();
+  const languages = ["en", "ar"];
+  const allPosts = [];
 
-  if (!posts) return [];
+  for (const locale of languages) {
+    const posts = await getBlogPosts(locale);
+    if (posts) {
+      allPosts.push(
+        ...posts.map((post) => ({
+          slug: post.slug.current,
+        })),
+      );
+    }
+  }
 
-  return posts.map((post) => ({
-    slug: post.slug.current,
-  }));
+  return allPosts;
 }
 
 export default async function page({
@@ -47,7 +56,9 @@ export default async function page({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const post = await getBlogPost(slug);
+  const locale = await getLocale();
+
+  const post = await getBlogPost(slug, locale);
 
   if (!post) return;
 

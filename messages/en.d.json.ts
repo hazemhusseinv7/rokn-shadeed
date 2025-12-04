@@ -54,12 +54,13 @@ declare const messages: {
     },
     "proof": "Proof",
     "indicator": {
+      "title": "Support type",
+      "prefix": "Support",
       "type-1": "Financial",
       "type-2": "Moral",
       "type-3": "Indirect",
       "type-4": "Safe"
     },
-
     "messages": {
       "type-to-search": "Type at least 2 characters to search",
       "no-results": "No results found",

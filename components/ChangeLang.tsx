@@ -38,10 +38,10 @@ const ChangeLang = ({ className }: { className?: string }) => {
   };
 
   return (
-    <Dropdown className={cn(className, "min-w-24")}>
+    <Dropdown>
       <DropdownTrigger>
         <Button
-          className="max-w-12 min-w-0 bg-transparent px-3"
+          className={cn(className, "min-w-12 bg-transparent px-3")}
           endContent={!isPending && <FaEarthAfrica className="size-5" />}
           isLoading={isPending}
           aria-label="Change Language"

@@ -219,13 +219,13 @@ function ActionSearchBar({
               onFocus={handleFocus}
               onBlur={handleBlur}
               onKeyDown={handleKeyDown}
-              aria-expanded={isFocused}
-              aria-autocomplete="list"
-              aria-activedescendant={
-                activeIndex >= 0
-                  ? `action-${results[activeIndex]?.id}`
-                  : undefined
-              }
+              // aria-expanded={isFocused}
+              // aria-autocomplete="list"
+              // aria-activedescendant={
+              //   activeIndex >= 0
+              //     ? `search-${results[activeIndex]?.id}`
+              //     : undefined
+              // }
               id="search"
             >
               <PlaceholdersAndVanishInput
@@ -365,13 +365,12 @@ function ActionSearchBar({
                       <Link
                         href={getResultUrl(result)}
                         className="flex w-full items-center justify-between gap-2"
-                        target="_blank"
                       >
                         <div className="flex items-center gap-2">
                           {result.logo && (
                             <img
                               src={result.logo}
-                              className="size-4 text-gray-500"
+                              className="size-4"
                               aria-hidden="true"
                             />
                           )}
@@ -399,6 +398,9 @@ function ActionSearchBar({
                 </motion.ul>
 
                 <div className="mt-2 border-t border-gray-100 px-3 py-2 dark:border-gray-800">
+                  <span className="mb-2 text-xs text-gray-400 block">
+                    {t("indicator.title")}
+                  </span>
                   <div className="flex items-center justify-between text-xs text-gray-500">
                     {/* Tier 1 - Financial support */}
                     <div className="flex items-center gap-1">

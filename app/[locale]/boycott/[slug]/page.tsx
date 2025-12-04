@@ -130,17 +130,31 @@ export default async function Page({
                           : "bg-gray-400",
                 )}
               >
-                <span>
-                  {boycottCompany.tier?.charAt(0) === "1"
-                    ? t("indicator.type-1")
-                    : boycottCompany.tier?.charAt(0) === "2"
-                      ? t("indicator.type-2")
-                      : boycottCompany.tier?.charAt(0) === "3"
-                        ? t("indicator.type-3")
-                        : boycottCompany.tier?.charAt(0) === "4"
-                          ? t("indicator.type-4")
-                          : "Unknown Tier"}
-                </span>
+                <div>
+                  {boycottCompany.tier?.charAt(0) === "1" ? (
+                    <div className="flex gap-1 ltr:flex-row-reverse">
+                      <span> {t("indicator.prefix")}</span>
+                      <span> {t("indicator.type-1")}</span>
+                    </div>
+                  ) : boycottCompany.tier?.charAt(0) === "2" ? (
+                    <div className="flex gap-1 ltr:flex-row-reverse">
+                      <span> {t("indicator.prefix")}</span>
+                      <span> {t("indicator.type-2")}</span>
+                    </div>
+                  ) : boycottCompany.tier?.charAt(0) === "3" ? (
+                    <div className="flex gap-1 ltr:flex-row-reverse">
+                      <span> {t("indicator.prefix")}</span>
+                      <span> {t("indicator.type-3")}</span>
+                    </div>
+                  ) : boycottCompany.tier?.charAt(0) === "4" ? (
+                    <div className="flex gap-1 ltr:flex-row-reverse">
+                      <span> {t("indicator.prefix")}</span>
+                      <span> {t("indicator.type-4")}</span>
+                    </div>
+                  ) : (
+                    <span>Unknown Tier</span>
+                  )}
+                </div>
               </div>
             </div>
             <div className="font-light">{boycottCompany.category}</div>

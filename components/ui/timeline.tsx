@@ -53,7 +53,7 @@ export const Timeline = ({ data }: { data: BlogPost[] }) => {
               </div>
             </div>
 
-            <div className="relative w-full pr-4 ltr:pl-20 ltr:md:pl-4 rtl:pr-20 rtl:md:pr-4">
+            <div className="relative w-full ltr:pr-4 ltr:pl-20 ltr:md:pl-4 rtl:pr-20 rtl:pl-4 rtl:md:pr-4">
               <div className="mb-4 block text-left text-2xl font-bold text-neutral-500 md:hidden dark:text-neutral-500">
                 <p className="mb-8 text-xl font-normal text-neutral-800 md:text-2xl dark:text-neutral-200">
                   {title}
