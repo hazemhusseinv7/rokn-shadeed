@@ -10,6 +10,7 @@ interface ImageType {
 interface SettingsType {
   phone?: string;
   email?: string;
+  telegramPost?: string;
   twitter?: string;
   linkedin?: string;
   tiktok?: string;

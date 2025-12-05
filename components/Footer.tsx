@@ -112,13 +112,15 @@ const Footer = async () => {
         <div className="dark:from-primary-2 dark:to-primary-3 from-primary-2 via-primary-3 to-primary-3 justify-between gap-10 rounded-xs rounded-b-none bg-linear-to-tr p-5 py-5 text-white sm:flex 2xl:py-10">
           <div className="flex w-fit flex-col justify-center">
             <div className="w-64 space-y-1 py-2 2xl:w-80">
-              <Image
-                src="/logo/logo-alt-3.svg"
-                alt="logo"
-                width={32}
-                height={32}
-                className="mb-10 size-20"
-              />
+              <Link href="/">
+                <Image
+                  src="/logo/logo-alt-3.svg"
+                  alt="logo"
+                  width={32}
+                  height={32}
+                  className="mb-10 size-20"
+                />
+              </Link>
               <p className="text-sm leading-[120%]">
                 {footer?.cardDescription}
               </p>

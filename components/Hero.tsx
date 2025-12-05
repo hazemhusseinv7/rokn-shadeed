@@ -1,10 +1,9 @@
 import BotDetection from "@/components/forgeui/bot-detection";
-// import LightRays from "@/components/LightRays";
 import { TextEffect } from "@/components/motion-primitives/text-effect";
+import ActionSearchBar from "@/components/kokonutui/action-search-bar";
+import Silk from "@/components/Silk";
 
 import { getHeroData } from "@/lib/sanity/queries";
-import ActionSearchBar from "./kokonutui/action-search-bar";
-import Silk from "./Silk";
 
 const Hero = async ({ params }: { params: Promise<{ locale: string }> }) => {
   const { locale } = await params;
@@ -14,21 +13,6 @@ const Hero = async ({ params }: { params: Promise<{ locale: string }> }) => {
   return (
     <section id="hero" className="overflow-hidden">
       <div className="relative min-h-screen pb-14">
-        {/* <div className="absolute size-full">
-          <LightRays
-            raysOrigin="top-center"
-            raysSpeed={1.5}
-            lightSpread={0.8}
-            rayLength={1.2}
-            followMouse={true}
-            mouseInfluence={0.1}
-            noiseAmount={0.1}
-            distortion={0.05}
-            raysColor="#3f3f46"
-            className="custom-rays"
-          />
-        </div> */}
-
         <div className="absolute size-full">
           <Silk speed={5} scale={1} noiseIntensity={1.5} rotation={0} />
         </div>
