@@ -38,6 +38,56 @@ export async function getSettingsData(): Promise<SettingsType | null> {
   }
 }
 
+export interface RedirectType {
+  _id: string;
+  name: string;
+  slug: {
+    current: string;
+  };
+  destination: string;
+  active: boolean;
+  description?: string;
+  _createdAt: string;
+  _updatedAt: string;
+}
+
+export async function getRedirectPath(
+  path: string,
+): Promise<RedirectType | null> {
+  const redirectPath = path.replace(/^\/|\/$/g, "");
+
+  if (!redirectPath) return null;
+
+  const query = `
+    *[_type == "redirect" && slug.current == $slug && active == true][0] {
+      _id,
+      name,
+      slug,
+      destination,
+      active,
+      description,
+      _createdAt,
+      _updatedAt
+    }
+  `;
+
+  try {
+    return await sanityClient.fetch(
+      query,
+      { slug: redirectPath },
+      {
+        next: {
+          revalidate: REVALIDATE_TIME,
+          tags: [`redirect:${redirectPath}`],
+        },
+      },
+    );
+  } catch (error) {
+    console.error(`Error fetching redirect for path "${path}":`, error);
+    return null;
+  }
+}
+
 export async function getHeroData(
   lang: string = "en",
 ): Promise<HeroType | null> {

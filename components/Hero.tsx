@@ -26,7 +26,7 @@ const Hero = async ({ params }: { params: Promise<{ locale: string }> }) => {
             preset="blur"
             speedReveal={0.3}
             speedSegment={0.3}
-            className="mt-14 text-center text-2xl md:mt-32"
+            className="text-primary-2 mt-14 text-center text-2xl md:mt-32 dark:text-zinc-100"
           >
             {data.title}
           </TextEffect>

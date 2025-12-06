@@ -22,6 +22,19 @@ interface SettingsType {
   youtube?: string;
 }
 
+interface RedirectType {
+  _id: string;
+  name: string;
+  slug: {
+    current: string;
+  };
+  destination: string;
+  active: boolean;
+  description?: string;
+  _createdAt: string;
+  _updatedAt: string;
+}
+
 interface HeroType {
   title: string;
   searchInputs?: { label: string }[];

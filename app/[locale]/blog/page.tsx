@@ -1,7 +1,7 @@
 import { Timeline } from "@/components/ui/timeline";
 import { getBlogPosts } from "@/lib/sanity/queries";
 
-export default async function page({ params }: PageProps<"/[locale]">) {
+export default async function Page({ params }: PageProps<"/[locale]">) {
   const { locale } = await params;
 
   const posts: BlogPost[] | null = await getBlogPosts(locale);

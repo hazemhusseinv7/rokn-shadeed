@@ -50,7 +50,7 @@ export async function generateStaticParams() {
   return allPosts;
 }
 
-export default async function page({
+export default async function Page({
   params,
 }: {
   params: Promise<{ slug: string }>;
